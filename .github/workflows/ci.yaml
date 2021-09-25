@@ -29,10 +29,10 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: List direction
-        run : ls -la
+        run : docker build -t angular .
         
-      - name: Show Docker Version
-        run : docker --version
+      - name: Show Docker images
+        run : docker images
 
       # Runs a single command using the runners shell
       #- name: Run a one-line script
