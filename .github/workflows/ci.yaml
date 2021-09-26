@@ -27,7 +27,7 @@ jobs:
       #   run : ls -la
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       
       #- name: List direction
       #  run : ls -la
@@ -37,7 +37,7 @@ jobs:
           docker build -t abe_angular .
       
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
