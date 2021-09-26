@@ -3,7 +3,7 @@
 name: CI
 env:
   CR_PAT  : "test"
-  PAT_USER: "gh_user"
+  PAT_USER: "gh_actions"
   
 # Controls when the workflow will run
 on:
@@ -37,7 +37,7 @@ jobs:
       - name: Build Docker image from Dockerfile
         run : |
           docker build -t abe_angular .
-          echo ${{ env.CR_PAT }}
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io --username ${{ env.PAT_USER }} --password-stdin
           docker tag abe_angular ghcr.io/ABE/abe_angular:0.0.1
           docker push ghcr.io/ABE/abe_angular:0.0.1
         
