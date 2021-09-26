@@ -25,21 +25,26 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: List direction
-        run : ls -la
+      # - name: List direction
+      #   run : ls -la
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       
-      - name: List direction
-        run : ls -la
+      #- name: List direction
+      #  run : ls -la
       
       - name: Build Docker image from Dockerfile
         run : |
           docker build -t abe_angular .
+      
+      - name: Set the Tag on Container Registry
+        run : |
           echo ${{ secrets.CR_PAT }} | docker login ghcr.io --username ${{ env.PAT_USER }} --password-stdin
-          docker tag abe_angular ghcr.io/ABE/abe_angular:0.0.1
-          docker push ghcr.io/ABE/abe_angular:0.0.1
+          docker tag abe_angular ghcr.io/${{ env.PAT_USER }}/abe_angular:0.0.1
+          
+      - name: Push Image to Container Registry
+        run :  docker push ghcr.io/${{ env.PAT_USER }}/abe_angular:0.0.1
         
       - name: Show Docker images
         run : docker images
