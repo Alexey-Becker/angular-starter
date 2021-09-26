@@ -2,8 +2,8 @@
 
 name: CI
 env:
-  CR_PAT  : "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"
-  PAT_USER: "gh_actions"
+  CR_PAT  : "test"
+  PAT_USER: "gh_user"
   
 # Controls when the workflow will run
 on:
@@ -36,10 +36,10 @@ jobs:
       
       - name: Build Docker image from Dockerfile
         run : |
-          # docker build -t abe_angular .
+          docker build -t abe_angular .
           echo ${{ env.CR_PAT }}
-          # docker tag abe_angular ghcr.io/ABE/abe_angular:0.0.1
-          # docker push ghcr.io/ABE/abe_angular:0.0.1
+          docker tag abe_angular ghcr.io/ABE/abe_angular:0.0.1
+          docker push ghcr.io/ABE/abe_angular:0.0.1
         
       - name: Show Docker images
         run : docker images
