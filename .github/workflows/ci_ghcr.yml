@@ -51,7 +51,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags:  ${{ secrets.DOCKER_HUB_USERNAME }}/abe_angular
+          tags:  ${{ github.repository_owner }}/abe_angular:v1.0
           #cache-from: type=local,src=/tmp/.buildx-cache
           #cache-to: type=local,dest=/tmp/.buildx-cache
           
